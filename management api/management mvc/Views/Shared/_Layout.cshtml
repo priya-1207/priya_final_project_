@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - management_mvc</title>
+
+    <link rel="stylesheet" href="~/css/nav.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+</head>
+<body>
+    <header>
+        <div class="sidebar close">
+            <div class="logo-details">
+                <i class="lab la-windows"></i>
+                <span class="logo_name">TaskDash</span>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="/project/Index">
+                        <i class="las la-tachometer-alt"></i>
+                        <span class="link_name">Dashboard</span>
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" href="/Index">Dashboard</a></li>
+                    </ul>
+                </li>
+                <li>
+                <li>
+                    <a href="/project/Create">
+                        <i class="lab la-wpforms"></i>
+                        <span class="link_name">add project</span>
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" href="/project/Create">add project</a></li>
+                    </ul>
+                </li>
+                <li>
+
+                    <a href="/project/Details">
+                        <i class="lar la-chart-bar"></i>
+                        <span class="link_name">Charts</span>
+                    </a>
+
+                    <ul class="sub-menu">
+                        <li><a class="link_name" href="/project/Details">Charts</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - management_mvc - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

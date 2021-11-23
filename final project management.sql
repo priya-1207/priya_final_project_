@@ -1,0 +1,20 @@
+create table projectdetail(
+project_id  int primary key identity(1,1),
+username varchar(max),
+project_name varchar(max),
+startdate datetime,
+enddate datetime,
+duration varchar(50),
+ui_tasks_percent decimal,
+ui_start_date date,
+ui_end_date date,
+api_tasks_percent decimal,
+api_start_date date,
+api_end_date date,
+db_tasks_percent decimal,
+db_start_date date,
+db_end_date date,
+testing_tasks_percent decimal,
+testing_start_date date,
+testing_end_date date
+)

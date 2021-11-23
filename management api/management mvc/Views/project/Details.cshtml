@@ -1,0 +1,230 @@
+﻿@model management_mvc.Models.Projectdetail
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<head>
+
+    <link rel="stylesheet" href="~/css/chart.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<div class="contentgraph">
+    <div class="payment">
+        <div class="title">
+            <h2>  @Html.DisplayFor(model => model.ProjectName)</h2>
+
+        </div>
+        <table>
+
+            <tr>
+
+                <th>TASKS</th>
+                <th>START DATE</th>
+                <th>END DATE</th>
+                <th>COMPLETED(%)</th>
+
+            </tr>
+            <tr>
+                <td>UI Task</td>
+                <td>   @Html.DisplayFor(model => model.UiStartDate)</td>
+                <td> @Html.DisplayFor(model => model.UiEndDate)</td>
+                <td>  @Html.DisplayFor(model => model.UiTasksPercent)</td>
+
+
+            </tr>
+            <tr>
+                <td>API Task</td>
+                <td> @Html.DisplayFor(model => model.ApiStartDate)</td>
+                <td> @Html.DisplayFor(model => model.ApiEndDate)</td>
+                <td> @Html.DisplayFor(model => model.ApiTasksPercent)</td>
+
+
+            </tr>
+            <tr>
+                <td>DB Task</td>
+                <td> @Html.DisplayFor(model => model.DbStartDate)</td>
+                <td>@Html.DisplayFor(model => model.DbEndDate)</td>
+                <td>  @Html.DisplayFor(model => model.DbTasksPercent)</td>
+
+
+            </tr>
+            <tr>
+                <td>Testing Task</td>
+                <td>@Html.DisplayFor(model => model.TestingStartDate)</td>
+                <td>@Html.DisplayFor(model => model.TestingEndDate)</td>
+                <td>  @Html.DisplayFor(model => model.TestingTasksPercent)</td>
+
+
+            </tr>
+
+
+        </table>
+    </div>
+
+
+    <!-- Gantt chart       -->
+    <div class="chart-containers" style="position: relative; width:55vw">
+        <canvas id="myChart"></canvas>
+    </div>
+
+
+    <script>
+        // setup
+        const data = {
+            labels: ['UI Task', 'API Task', 'DB Task', 'Testing Task'],
+            datasets: [{
+                label: 'Tasks',
+                data: [@Html.DisplayFor(model => model.UiTasksPercent), @Html.DisplayFor(model => model.ApiTasksPercent),  @Html.DisplayFor(model => model.DbTasksPercent), @Html.DisplayFor(model => model.TestingTasksPercent)],
+                backgroundColor: [
+                    'rgba(255, 26, 104, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+
+                ],
+                borderColor: [
+                    'rgba(255, 26, 104, 1)',
+                    'rgba(54, 162, 235, 1)',
+
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // config
+        const config = {
+            type: 'bar',
+            data,
+            options: {
+                barPercentage: 0.3,
+                indexAxis: 'y',
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        // render init block
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+    </script>
+</div>
+
+
+<!-- bar chart -->
+<div class="content1">
+    <div class="cont">
+
+        <div class="chart1" style="width: 700px;">
+            <canvas id="myChart1"></canvas>
+        </div>
+        <script>
+            var ctx1 = document.getElementById('myChart1').getContext('2d');
+            const gradientbg = ctx1.createLinearGradient(0, 0, 0, 350);
+            gradientbg.addColorStop(1, 'red');
+            gradientbg.addColorStop(0.5, 'green');
+
+            var myChart2 = new Chart(ctx1, {
+                type: 'bar',
+
+                data: {
+                    labels: ['completed', 'pending'],
+                    datasets: [{
+                        label: 'SUMMARY',
+                        data: [@ViewData["data"], @ViewData["pendingdata"]],
+                        backgroundColor: gradientbg,
+                        borderColor: [
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    barPercentage: 0.3,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+
+                }
+            });
+        </script>
+
+    </div>
+
+
+
+
+    <select name="chartType" id="chartType" style=" display: flex; height: 10%; margin-top: -2%" onchange="updateChartType()">
+        <option value="bar">doughnut</option>
+        <option value="line">Line</option>
+        <option value="pie">Pie</option>
+        <option value="radar">Radar</option>
+        <option value="polarArea">Polar Area</option>
+    </select>
+    <!-- canvas element -->
+    <div class="chart-container" style="width:90%;max-width:400px;padding-right: 20px;background-color:#E4E9F7;border-radius: 10px;height: 400px;position: relative;">
+        <canvas id="my_Charts"></canvas>
+    </div>
+
+    <script>
+        // Data define for bar chart
+        var myData = {
+            labels: ["UI Task", "API Task", "Database Task", "Testing Task"],
+            datasets: [{
+                label: "Tasks!",
+                fill: false,
+                backgroundColor: ["#b91d47",
+                    "#00aba9",
+                    "#2b5797",
+                    "#e8c3b9",],
+                borderColor: 'black',
+                data: [ @Html.DisplayFor(model => model.UiTasksPercent),@Html.DisplayFor(model => model.ApiTasksPercent),@Html.DisplayFor(model => model.DbTasksPercent),  @Html.DisplayFor(model => model.TestingTasksPercent)],
+            }]
+        };
+
+        // Code to drow Chart
+        // Default chart defined with type: 'bar'
+        var ctx = document.getElementById('my_Charts').getContext('2d');
+        var myChart1 = new Chart(ctx, {
+            type: 'doughnut',    	// Define chart type
+            data: myData    	// Chart data
+        });
+
+        // Function runs on chart type select update
+
+        function updateChartType() {
+            // Destroy the previous chart
+            myChart1.destroy();
+            // Draw a new chart on the basic of dropdown
+            myChart1 = new Chart(ctx, {
+                type: document.getElementById("chartType").value,  // Select chart type from dropdown
+                data: myData
+            });
+        };
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

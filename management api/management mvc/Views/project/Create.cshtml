@@ -1,0 +1,122 @@
+﻿@model management_mvc.Models.Projectdetail
+
+@{
+    ViewData["Title"] = "Create";
+}
+<head>
+    <title>Add project</title>
+    <link rel="stylesheet" href="~/css/Form.css">
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+
+</head>
+
+<div class="style">
+    <div class="regform"><h1>Add project</h1></div>
+    <div class="main">
+        <form asp-action="create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+            <label asp-for="Username" class="name"></label>
+            <input asp-for="Username" class="project" />
+
+            <label asp-for="ProjectName" class="name">Project Name</label>
+            <input asp-for="ProjectName" class="project">
+
+            <div class="inlinedate">
+                <label asp-for="Startdate" class="name">Start Date</label>
+                <input asp-for="Startdate" class="startdate" id="TxtStart">
+
+                <label asp-for="Enddate" class="name">End date</label>
+                <input asp-for="Enddate" class="enddate" id="TxtEnd" onchange="checkdt()">
+                <p id="status" style=" margin-left: -210px; margin-top: 90px"></p>
+
+            </div>
+
+            <div class="days">
+                <label asp-for="Duration" class="name">Duration</label>
+                <input asp-for="Duration" class="Day">
+
+            </div>
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" value="Add Category" class="btn btn-danger" /> &nbsp;
+            <div id="task">
+
+            </div>
+
+            <label asp-for="UiTasksPercent" class="task"> UI Tasks(%)</label>
+            <input asp-for="UiTasksPercent" class="firstname">
+            <div class="inlinedate">
+                <label asp-for="UiStartDate" class="name"> UI Start Date</label>
+                <input asp-for="UiStartDate" class="startdate">
+                <label asp-for="UiEndDate" class="name">UI End Date</label>
+                <input asp-for="UiEndDate" class="enddate" >
+            
+            </div>
+            
+            <label asp-for="ApiTasksPercent" class="task">API Tasks (%)</label>
+            <input asp-for="ApiTasksPercent" class="firstname">
+            <div class="inlinedate">
+                <label asp-for="ApiStartDate" class="name">API Start Date</label>
+                <input asp-for="ApiStartDate" class="startdate">
+                <label asp-for="ApiEndDate" class="name">API End date</label>
+                <input asp-for="ApiEndDate" class="enddate">
+            </div>
+            <label asp-for="DbTasksPercent" class="task">
+                DB Tasks (%)
+            </label><input asp-for="DbTasksPercent" class="firstname">
+            <div class="inlinedate">
+                <label asp-for="DbStartDate" class="name"> DB Start Date</label>
+                <input asp-for="DbStartDate" class="startdate">
+                <label asp-for="DbEndDate" class="name">DB End date</label>
+                <input asp-for="DbEndDate" class="enddate">
+            </div>
+            <label asp-for="TestingTasksPercent" class="task">Testing Tasks(%)</label>
+            <input asp-for="TestingTasksPercent" class="firstname">
+            <div class="inlinedate">
+                <label asp-for="TestingStartDate" class="name">Testing Start Date</label>
+                <input asp-for="TestingStartDate" class="startdate">
+                <label asp-for="TestingEndDate" class="name">Testing End date</label>
+                <input asp-for="TestingEndDate" class="enddate">
+            </div>
+            <div id="btn-sub">
+                <div class="form-group">
+                    <input type="submit" value="Submit" class="btn btn-danger" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+@section Scripts
+{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        function checkdt() {
+            var dp = new Date(document.getElementById("TxtEnd").value).getTime();
+            console.log(new Date(document.getElementById("TxtEnd").value).getTime());
+            var Start = Date.parse(new Date());
+            var dd = new Date(Start).getTime();
+            if ((document.getElementById("TxtEnd").value == null) || (dp < dd)) {
+                $("#status").html('<font color="Red"> end date should to greater than  startdate date')
+                $("#submit").prop('disabled', true);
+            }
+            else {
+                @* $("#status").html('<font color="Green"> Valid') *@
+                $("#submit").prop('disabled', false);
+            }
+        }
+    </script>
+
+}
+
+
+
+
+
+
+
+

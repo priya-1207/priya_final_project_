@@ -1,0 +1,120 @@
+﻿@model management_mvc.Models.Projectdetail
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<h1>Edit</h1>
+
+<h4>Projectdetail</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProjectId" class="control-label">Project Id</label>
+                <input asp-for="ProjectId" class="form-control" />
+                <span asp-validation-for="ProjectId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Username" class="control-label">Username</label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectName" class="control-label">Project Name</label>
+                <input asp-for="ProjectName" class="form-control" />
+                <span asp-validation-for="ProjectName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Startdate" class="control-label">Start Date</label>
+                <input asp-for="Startdate" class="form-control" />
+                <span asp-validation-for="Startdate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Enddate" class="control-label">End Date</label>
+                <input asp-for="Enddate" class="form-control" />
+                <span asp-validation-for="Enddate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Duration" class="control-label">Duration</label>
+                <input asp-for="Duration" class="form-control" />
+                <span asp-validation-for="Duration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UiTasksPercent" class="control-label">UI Task Percent</label>
+                <input asp-for="UiTasksPercent" class="form-control" />
+                <span asp-validation-for="UiTasksPercent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UiStartDate" class="control-label">UI Start Date</label>
+                <input asp-for="UiStartDate" class="form-control" />
+                <span asp-validation-for="UiStartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UiEndDate" class="control-label">UI End Date</label>
+                <input asp-for="UiEndDate" class="form-control" />
+                <span asp-validation-for="UiEndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApiTasksPercent" class="control-label">API Task Percent</label>
+                <input asp-for="ApiTasksPercent" class="form-control" />
+                <span asp-validation-for="ApiTasksPercent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApiStartDate" class="control-label">API Start Date</label>
+                <input asp-for="ApiStartDate" class="form-control" />
+                <span asp-validation-for="ApiStartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApiEndDate" class="control-label">API End Date</label>
+                <input asp-for="ApiEndDate" class="form-control" />
+                <span asp-validation-for="ApiEndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DbTasksPercent" class="control-label">DB Task Percent</label>
+                <input asp-for="DbTasksPercent" class="form-control" />
+                <span asp-validation-for="DbTasksPercent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DbStartDate" class="control-label">DB Start Date</label>
+                <input asp-for="DbStartDate" class="form-control" />
+                <span asp-validation-for="DbStartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DbEndDate" class="control-label">DB End Date</label>
+                <input asp-for="DbEndDate" class="form-control" />
+                <span asp-validation-for="DbEndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TestingTasksPercent" class="control-label">Testing Task Percent</label>
+                <input asp-for="TestingTasksPercent" class="form-control" />
+                <span asp-validation-for="TestingTasksPercent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TestingStartDate" class="control-label">Testing Start Date</label>
+                <input asp-for="TestingStartDate" class="form-control" />
+                <span asp-validation-for="TestingStartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TestingEndDate" class="control-label">Testing End Date</label>
+                <input asp-for="TestingEndDate" class="form-control" />
+                <span asp-validation-for="TestingEndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
